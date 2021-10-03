@@ -127,11 +127,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `patientsData`.`tracker_data` ;
 
 CREATE TABLE IF NOT EXISTS `patientsData`.`tracker_data` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
-  `systolic_blood_pressure` TINYINT(250) NULL,
-  `diastolic_blood_pressure` TINYINT(160) NULL,
-  `heart_rate` TINYINT(250) NULL,
+  `systolic_blood_pressure` TINYINT(250) UNSIGNED NULL,
+  `diastolic_blood_pressure` TINYINT(160) UNSIGNED NULL,
+  `heart_rate` TINYINT(250) UNSIGNED NULL,
   `temperature` DECIMAL(3,1) NULL,
   `medical_card_id` INT NOT NULL,
   PRIMARY KEY (`id`),
