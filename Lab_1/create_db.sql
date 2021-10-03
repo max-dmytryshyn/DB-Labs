@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema patientsData
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `patientsData` ;
 
 -- -----------------------------------------------------
 -- Schema patientsData
@@ -17,6 +18,8 @@ USE `patientsData` ;
 -- -----------------------------------------------------
 -- Table `patientsData`.`hospital`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`hospital` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`hospital` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -28,6 +31,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`medical_card`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`medical_card` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`medical_card` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -40,6 +45,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`doctor_personal_file`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`doctor_personal_file` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`doctor_personal_file` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -58,6 +65,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`patient`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`patient` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`patient` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `medical_card_id` INT NOT NULL,
@@ -88,16 +97,25 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`doctor_appointment`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`doctor_appointment` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`doctor_appointment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `recomendation` VARCHAR(45) NULL,
   `doctor_personal_file_id` INT NOT NULL,
+  `medical_card_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_doctor_appointment_doctor_personal_file1_idx` (`doctor_personal_file_id` ASC) VISIBLE,
+  INDEX `fk_doctor_appointment_medical_card1_idx` (`medical_card_id` ASC) VISIBLE,
   CONSTRAINT `fk_doctor_appointment_doctor_personal_file1`
     FOREIGN KEY (`doctor_personal_file_id`)
     REFERENCES `patientsData`.`doctor_personal_file` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_doctor_appointment_medical_card1`
+    FOREIGN KEY (`medical_card_id`)
+    REFERENCES `patientsData`.`medical_card` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -106,6 +124,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`tracker_data`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`tracker_data` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`tracker_data` (
   `id` INT NOT NULL,
   `date` DATETIME NOT NULL,
@@ -113,13 +133,22 @@ CREATE TABLE IF NOT EXISTS `patientsData`.`tracker_data` (
   `diastolic_blood_pressure` TINYINT(160) NULL,
   `heart_rate` TINYINT(250) NULL,
   `temperature` DECIMAL(3,1) NULL,
-  PRIMARY KEY (`id`))
+  `medical_card_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tracker_data_medical_card1_idx` (`medical_card_id` ASC) VISIBLE,
+  CONSTRAINT `fk_tracker_data_medical_card1`
+    FOREIGN KEY (`medical_card_id`)
+    REFERENCES `patientsData`.`medical_card` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `patientsData`.`country`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`country` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`country` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -130,6 +159,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`manufacturer`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`manufacturer` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`manufacturer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -147,6 +178,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`drug`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`drug` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`drug` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -165,6 +198,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `patientsData`.`doctor_appointment_has_drug`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `patientsData`.`doctor_appointment_has_drug` ;
+
 CREATE TABLE IF NOT EXISTS `patientsData`.`doctor_appointment_has_drug` (
   `doctor_appointment_id` INT NOT NULL,
   `drug_id` INT NOT NULL,
@@ -179,50 +214,6 @@ CREATE TABLE IF NOT EXISTS `patientsData`.`doctor_appointment_has_drug` (
   CONSTRAINT `fk_doctor_appointment_has_drug_drug1`
     FOREIGN KEY (`drug_id`)
     REFERENCES `patientsData`.`drug` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `patientsData`.`medical_card_has_doctor_appointment`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `patientsData`.`medical_card_has_doctor_appointment` (
-  `medical_card_id` INT NOT NULL,
-  `doctor_appointment_id` INT NOT NULL,
-  PRIMARY KEY (`medical_card_id`, `doctor_appointment_id`),
-  INDEX `fk_medical_card_has_doctor_appointment_doctor_appointment1_idx` (`doctor_appointment_id` ASC) VISIBLE,
-  INDEX `fk_medical_card_has_doctor_appointment_medical_card1_idx` (`medical_card_id` ASC) VISIBLE,
-  CONSTRAINT `fk_medical_card_has_doctor_appointment_medical_card1`
-    FOREIGN KEY (`medical_card_id`)
-    REFERENCES `patientsData`.`medical_card` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_medical_card_has_doctor_appointment_doctor_appointment1`
-    FOREIGN KEY (`doctor_appointment_id`)
-    REFERENCES `patientsData`.`doctor_appointment` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `patientsData`.`medical_card_has_tracker_data`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `patientsData`.`medical_card_has_tracker_data` (
-  `medical_card_id` INT NOT NULL,
-  `tracker_data_id` INT NOT NULL,
-  PRIMARY KEY (`medical_card_id`, `tracker_data_id`),
-  INDEX `fk_medical_card_has_tracker_data_tracker_data1_idx` (`tracker_data_id` ASC) VISIBLE,
-  INDEX `fk_medical_card_has_tracker_data_medical_card1_idx` (`medical_card_id` ASC) VISIBLE,
-  CONSTRAINT `fk_medical_card_has_tracker_data_medical_card1`
-    FOREIGN KEY (`medical_card_id`)
-    REFERENCES `patientsData`.`medical_card` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_medical_card_has_tracker_data_tracker_data1`
-    FOREIGN KEY (`tracker_data_id`)
-    REFERENCES `patientsData`.`tracker_data` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
