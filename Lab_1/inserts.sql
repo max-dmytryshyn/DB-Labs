@@ -1,15 +1,13 @@
 DELETE FROM patient;
-
+DELETE FROM doctor_appointment_has_drug;
+DELETE FROM drug;
+DELETE FROM manufacturer;
 DELETE FROM patientsData.country;
 DELETE FROM doctor_appointment;
-DELETE FROM doctor_appointment_has_drug;
 DELETE FROM doctor_personal_file;
-DELETE FROM drug;
 DELETE FROM hospital;
-DELETE FROM manufacturer;
-DELETE FROM medical_card;
-
 DELETE FROM tracker_data;
+DELETE FROM medical_card;
 
 INSERT INTO hospital(name, adress) 
 VALUES
@@ -72,7 +70,7 @@ VALUES
 (2, 3),
 (3, 3),
 (4, 4),
-(5, 5);
+(5, 4);
 
 INSERT INTO tracker_data(date, systolic_blood_pressure, diastolic_blood_pressure, heart_rate, temperature, medical_card_id)
 VALUES
