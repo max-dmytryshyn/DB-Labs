@@ -2,12 +2,23 @@ DELETE FROM patient;
 DELETE FROM doctor_appointment_has_drug;
 DELETE FROM drug;
 DELETE FROM manufacturer;
-DELETE FROM patientsData.country;
+DELETE FROM country;
 DELETE FROM doctor_appointment;
 DELETE FROM doctor_personal_file;
 DELETE FROM hospital;
 DELETE FROM tracker_data;
 DELETE FROM medical_card;
+
+ALTER TABLE patient AUTO_INCREMENT = 1;
+ALTER TABLE doctor_appointment_has_drug AUTO_INCREMENT = 1;
+ALTER TABLE drug AUTO_INCREMENT = 1;
+ALTER TABLE manufacturer AUTO_INCREMENT = 1;
+ALTER TABLE country AUTO_INCREMENT = 1;
+ALTER TABLE doctor_appointment AUTO_INCREMENT = 1;
+ALTER TABLE doctor_personal_file AUTO_INCREMENT = 1;
+ALTER TABLE hospital AUTO_INCREMENT = 1;
+ALTER TABLE tracker_data AUTO_INCREMENT = 1;
+ALTER TABLE medical_card AUTO_INCREMENT = 1;
 
 INSERT INTO hospital(name, adress) 
 VALUES
