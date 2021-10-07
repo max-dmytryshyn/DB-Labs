@@ -1,3 +1,5 @@
+USE patientsData;
+
 DELETE FROM patient;
 DELETE FROM doctor_appointment_has_drug;
 DELETE FROM drug;

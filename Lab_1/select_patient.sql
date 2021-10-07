@@ -1,3 +1,5 @@
+USE patientsData;
+
 SELECT mc.name, mc.surname, mc.birth_date, h.name AS hospital_name, h.adress AS hospital_adress, 
 	dpf.name AS doctor_name, dpf.surname AS doctor_surname,mc.tracker_date, mc.systolic_blood_pressure,
     mc.diastolic_blood_pressure, mc.heart_rate, mc.temperature, mc.doctor_appointment_date, mc.recomendation,
@@ -24,6 +26,4 @@ INNER JOIN
 			GROUP BY dahd.doctor_appointment_id) AS dahd
 		ON da.id = dahd.doctor_appointment_id) AS da
     ON mc.id = da.medical_card_id) AS mc
-ON patient.medical_card_id = mc.id
-
-
+ON patient.medical_card_id = mc.id;
