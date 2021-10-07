@@ -29,7 +29,9 @@ CREATE TABLE doctor_personal_file(
     CONSTRAINT pk_doc_pnl_file PRIMARY KEY (id),
     CONSTRAINT fk_doc_pnl_file_hospital
     FOREIGN KEY (hospital_id)
-	REFERENCES hospital (id)
+	REFERENCES hospital (id),
+    
+    INDEX doc_pnl_file_name_surname_idx (name, surname)
 );
 
 CREATE TABLE medical_card(
@@ -38,7 +40,9 @@ CREATE TABLE medical_card(
     surname VARCHAR(45) NOT NULL,
     birth_date DATETIME NOT NULL,
     
-    CONSTRAINT pk_med_card PRIMARY KEY (id)
+    CONSTRAINT pk_med_card PRIMARY KEY (id),
+    
+    INDEX med_card_name_surname_idx (name, surname)
 );
 
 CREATE TABLE doctor_appointment(
@@ -54,7 +58,10 @@ CREATE TABLE doctor_appointment(
     REFERENCES doctor_personal_file (id),
     CONSTRAINT fk_doc_appointment_med_card
     FOREIGN KEY (medical_card_id)
-    REFERENCES medical_card (id)
+    REFERENCES medical_card (id),
+    
+    INDEX doc_appointment_date_idx (date),
+    INDEX fk_doc_appointment_med_card_idx (medical_card_id)
 );
 
 CREATE TABLE country(
@@ -112,7 +119,9 @@ CREATE TABLE tracker_data(
     CONSTRAINT pk_tracker_data PRIMARY KEY (id),
     CONSTRAINT fk_tracker_data_med_card 
     FOREIGN KEY (medical_card_id)
-    REFERENCES medical_card (id)
+    REFERENCES medical_card (id),
+    
+    INDEX fk_tracker_data_med_card_idx (medical_card_id)
 );
 
 CREATE TABLE patient(
