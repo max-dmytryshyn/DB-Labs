@@ -91,8 +91,7 @@ public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
 
     @Override
     public void create(E entity) throws SQLException {
-        try {
-            Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection()){
             String tableName = this.entityManager.getTableName();
             String columnsNames = this.entityManager.getInputtableColumnsNamesSeparatedByCommas();
             String values = this.entityManager.getCreateColumnsString(entity);
@@ -109,8 +108,7 @@ public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
 
     @Override
     public void update(I id, E entity) throws SQLException {
-        try {
-            Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = ConnectionManager.getConnection()){
             String tableName = this.entityManager.getTableName();
             String primaryKeyName = this.entityManager.getPrimaryKeyName();
             String parametersSetting = this.entityManager.getUpdateColumnsString(entity);

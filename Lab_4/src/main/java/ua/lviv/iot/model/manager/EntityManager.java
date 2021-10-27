@@ -25,10 +25,6 @@ public class EntityManager<E, I> {
         return this.eClass;
     }
 
-    public Field[] getEntityFields() {
-        return this.fields.clone();
-    }
-
     public String getTableName() {
         return this.eClass.getAnnotation(Table.class).name();
     }

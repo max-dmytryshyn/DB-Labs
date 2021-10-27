@@ -6,7 +6,6 @@ import ua.lviv.iot.model.manager.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -60,7 +59,7 @@ public class ViewOperations<E, I> {
 
     public void get() {
         System.out.println("Input id of row to find:");
-        I id = ((I) input.nextLine());
+        I id = (I) input.nextLine();
         try {
             System.out.println(controller.get(id));
         } catch (SQLException | EntityNotFoundException e) {
@@ -71,12 +70,12 @@ public class ViewOperations<E, I> {
 
     public void update() {
         System.out.println("Input id of row to update:");
-        I id = ((I) input.nextLine());
+        I id = (I) input.nextLine();
         EntityManager<E, I> entityManager = new EntityManager<E, I>(eClass);
         List<Field> fields = entityManager.getInputtableColumns();
         try {
             E entity = eClass.getConstructor().newInstance();
-            for (Field field: fields){
+            for (Field field : fields) {
                 field.setAccessible(true);
                 System.out.println("Input " + field.getName());
                 inputField(entity, field);
@@ -104,7 +103,7 @@ public class ViewOperations<E, I> {
         List<Field> fields = entityManager.getInputtableColumns();
         try {
             E entity = eClass.getConstructor().newInstance();
-            for (Field field: fields){
+            for (Field field : fields) {
                 field.setAccessible(true);
                 System.out.println("Input " + field.getName());
                 inputField(entity, field);
@@ -128,7 +127,7 @@ public class ViewOperations<E, I> {
 
     public void delete() {
         System.out.println("Input id of row to delete:");
-        I id = ((I) input.nextLine());
+        I id = (I) input.nextLine();
         try {
             controller.delete(id);
             System.out.println("Row №" + id + " deleted");

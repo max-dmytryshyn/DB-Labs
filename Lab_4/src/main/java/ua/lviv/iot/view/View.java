@@ -7,7 +7,6 @@ import ua.lviv.iot.model.entity.drug.Drug;
 import ua.lviv.iot.model.entity.drug.Manufacturer;
 import ua.lviv.iot.model.entity.patient.*;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class View {
