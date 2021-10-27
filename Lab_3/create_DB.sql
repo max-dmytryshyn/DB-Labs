@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS patientsData;
-USE patientsData;
+CREATE DATABASE IF NOT EXISTS patients_data;
+USE patients_data;
 
 DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS doctor_appointment_has_drug;
@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS medical_card;
 CREATE TABLE hospital (
 	id INT AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL, 
-    adress VARCHAR(45) NOT NULL,
+    address VARCHAR(45) NOT NULL,
     
     CONSTRAINT pk_hospital PRIMARY KEY (id)
 );
@@ -47,8 +47,8 @@ CREATE TABLE medical_card(
 
 CREATE TABLE doctor_appointment(
 	id INT AUTO_INCREMENT,
-    date DATETIME NOT NULL,
-    recomendation VARCHAR(45),
+    date DATETIME NOT NULL,	
+    recommendation VARCHAR(45),
     doctor_personal_file_id INT NOT NULL,
     medical_card_id INT NOT NULL,
     

@@ -1,3 +1,5 @@
+USE patients_data;
+
 DELETE FROM patient;
 DELETE FROM doctor_appointment_has_drug;
 DELETE FROM drug;
@@ -20,13 +22,13 @@ ALTER TABLE hospital AUTO_INCREMENT = 1;
 ALTER TABLE tracker_data AUTO_INCREMENT = 1;
 ALTER TABLE medical_card AUTO_INCREMENT = 1;
 
-INSERT INTO hospital(name, adress) 
+INSERT INTO hospital(name, address) 
 VALUES
-('Durka1', 'adress1'),
-('Durka2', 'adress2'),
-('Durka3', 'adress3'),
-('Durka4', 'adress4'),
-('Durka5', 'adress5');
+('Durka1', 'address1'),
+('Durka2', 'address2'),
+('Durka3', 'address3'),
+('Durka4', 'address4'),
+('Durka5', 'address5');
 
 INSERT INTO doctor_personal_file(name, surname, hospital_id)
 VALUES
@@ -44,7 +46,7 @@ VALUES
 ('Nastya', 'Chumak', '2003-09-15'),
 ('Danylo', 'Myroshnychenko', '2003-04-20');
 
-INSERT INTO doctor_appointment(date, recomendation, doctor_personal_file_id, medical_card_id)
+INSERT INTO doctor_appointment(date, recommendation, doctor_personal_file_id, medical_card_id)
 VALUES
 (CURDATE(), 'None', 1, 1),
 (CURDATE(), 'None', 2, 2),
