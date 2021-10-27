@@ -6,7 +6,7 @@ import ua.lviv.iot.model.annotations.NotInputtable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Table(name = "tracker_data")
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class TrackerData {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
-    private Date date;
+    private Timestamp date;
 
     @Column(name = "systolic_blood_pressure")
     @Size(max = 250)

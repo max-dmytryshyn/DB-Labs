@@ -5,7 +5,7 @@ import ua.lviv.iot.model.annotations.NotInputtable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Table(name = "doctor_appointment")
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class DoctorAppointment {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
-    private Date date;
+    private Timestamp date;
 
     @Column(name = "recommendation")
     private String Recommendation;
