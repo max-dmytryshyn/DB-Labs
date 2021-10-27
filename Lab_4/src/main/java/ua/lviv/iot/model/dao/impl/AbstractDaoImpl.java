@@ -18,11 +18,11 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
-    private static final String GET_ALL_TEMPLATE = "SELECT * FROM %s";
-    private static final String GET_BY_ID_TEMPLATE = "SELECT * FROM %s WHERE %s=%s";
-    private static final String CREATE_TEMPLATE = "INSERT INTO %s(%s) VALUES(%s)";
-    private static final String UPDATE_TEMPLATE = "UPDATE %s SET %s WHERE %s=%s";
-    private static final String DELETE_TEMPLATE = "DELETE FROM %s WHERE %s=%s";
+    private static final String GET_ALL_TEMPLATE = "SELECT * FROM %s;";
+    private static final String GET_BY_ID_TEMPLATE = "SELECT * FROM %s WHERE %s=%s;";
+    private static final String CREATE_TEMPLATE = "INSERT INTO %s(%s) VALUES(%s);";
+    private static final String UPDATE_TEMPLATE = "UPDATE %s SET %s WHERE %s=%s;";
+    private static final String DELETE_TEMPLATE = "DELETE FROM %s WHERE %s=%s;";
 
     private static final String ERROR_EXCEPTION_TEMPLATE = "[Error] Exception while %s";
     private static final String ERROR_MESSAGE_TEMPLATE = "[Error] Message: %s";
@@ -97,7 +97,6 @@ public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
             String columnsNames = this.entityManager.getInputtableColumnsNamesSeparatedByCommas();
             String values = this.entityManager.getCreateColumnsString(entity);
             String sqlStatement = String.format(CREATE_TEMPLATE, tableName, columnsNames, values);
-            System.out.println(sqlStatement);
             PreparedStatement ps = connection.prepareStatement(sqlStatement);
             ps.executeUpdate();
 
@@ -117,11 +116,9 @@ public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
             String parametersSetting = this.entityManager.getUpdateColumnsString(entity);
             String sqlStatement = String.format(UPDATE_TEMPLATE, tableName, parametersSetting, primaryKeyName, id);
             PreparedStatement ps = connection.prepareStatement(sqlStatement);
-            if (ps.getResultSet() == null) {
+            if (ps.executeUpdate() == 0) {
                 throw new EntityNotFoundException();
             }
-            ps.executeUpdate();
-
 
         } catch (IllegalAccessException | IllegalArgumentException | SecurityException e) {
             System.out.println(String.format(ERROR_EXCEPTION_TEMPLATE, "transforming data into objects"));
@@ -137,10 +134,8 @@ public abstract class AbstractDaoImpl<E, I> implements AbstractDao<E, I> {
         String sqlStatement = String.format(DELETE_TEMPLATE, tableName, primaryKeyName, id);
 
         PreparedStatement ps = connection.prepareStatement(sqlStatement);
-        System.out.println(ps.getResultSet());
-        if (ps.getResultSet() == null) {
+        if (ps.executeUpdate() == 0) {
             throw new EntityNotFoundException();
         }
-        ps.executeUpdate();
     }
 }
