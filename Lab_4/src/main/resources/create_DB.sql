@@ -14,23 +14,23 @@ DROP TABLE IF EXISTS medical_card;
 
 CREATE TABLE hospital (
 	id INT AUTO_INCREMENT,
-    name VARCHAR(45) NOT NULL, 
+    name VARCHAR(45) NOT NULL,
     address VARCHAR(45) NOT NULL,
-    
+
     CONSTRAINT pk_hospital PRIMARY KEY (id)
 );
 
 CREATE TABLE doctor_personal_file(
-	id INT AUTO_INCREMENT, 
-	name VARCHAR(45) NOT NULL, 
+	id INT AUTO_INCREMENT,
+	name VARCHAR(45) NOT NULL,
 	surname VARCHAR(45) NOT NULL,
 	hospital_id INT NOT NULL,
-    
+
     CONSTRAINT pk_doc_pnl_file PRIMARY KEY (id),
     CONSTRAINT fk_doc_pnl_file_hospital
     FOREIGN KEY (hospital_id)
 	REFERENCES hospital (id),
-    
+
     INDEX doc_pnl_file_name_surname_idx (name, surname)
 );
 
@@ -39,15 +39,15 @@ CREATE TABLE medical_card(
     name VARCHAR(45) NOT NULL,
     surname VARCHAR(45) NOT NULL,
     birth_date DATETIME NOT NULL,
-    
+
     CONSTRAINT pk_med_card PRIMARY KEY (id),
-    
+
     INDEX med_card_name_surname_idx (name, surname)
 );
 
 CREATE TABLE doctor_appointment(
 	id INT AUTO_INCREMENT,
-    date DATETIME NOT NULL,	
+    date DATETIME NOT NULL,
     recommendation VARCHAR(45),
     doctor_personal_file_id INT NOT NULL,
     medical_card_id INT NOT NULL,

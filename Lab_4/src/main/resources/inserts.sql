@@ -22,7 +22,7 @@ ALTER TABLE hospital AUTO_INCREMENT = 1;
 ALTER TABLE tracker_data AUTO_INCREMENT = 1;
 ALTER TABLE medical_card AUTO_INCREMENT = 1;
 
-INSERT INTO hospital(name, address) 
+INSERT INTO hospital(name, address)
 VALUES
 ('Durka1', 'address1'),
 ('Durka2', 'address2'),
