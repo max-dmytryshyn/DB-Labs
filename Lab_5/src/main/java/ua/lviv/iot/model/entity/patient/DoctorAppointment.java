@@ -34,7 +34,7 @@ public class DoctorAppointment {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Doctor appointment {"
                 + "id =" + id + ", "
                 + "date =" + date + ", "
                 + "recommendation = " + recommendation + ", "

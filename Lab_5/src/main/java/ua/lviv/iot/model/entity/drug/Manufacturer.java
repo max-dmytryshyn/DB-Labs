@@ -37,7 +37,7 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Manufacturer {"
                 + "id =" + id + ", "
                 + "name =" + name + ", "
                 + "countryId =" + country.getId()

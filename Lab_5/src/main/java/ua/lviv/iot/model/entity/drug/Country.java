@@ -31,7 +31,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Country {"
                 + "id =" + id + ", "
                 + "name =" + name
                 + "};" + "\n";
