@@ -63,9 +63,6 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
             session.beginTransaction();
             session.update(entity);
             session.getTransaction().commit();
-            if (session.isOpen()) {
-                session.close();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,9 +77,6 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
                 session.delete(entity);
             }
             session.getTransaction().commit();
-            if (session.isOpen()) {
-                session.close();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
