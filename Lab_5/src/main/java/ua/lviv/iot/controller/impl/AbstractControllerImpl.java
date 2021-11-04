@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class AbstractControllerImpl<E> implements AbstractController<E> {
-    private AbstractDao<E> dao;
+    private final AbstractDao<E> dao;
 
-    public AbstractControllerImpl(AbstractDao<E> dao){
+    public AbstractControllerImpl(AbstractDao<E> dao) {
         this.dao = dao;
     }
 
