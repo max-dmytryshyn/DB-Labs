@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
+@Entity
 @Table(name = "tracker_data")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +20,6 @@ public class TrackerData {
     private Integer id;
 
     @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp date;
 
     @Column(name = "systolic_blood_pressure")

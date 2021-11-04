@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 
+@Entity
 @Table(name = "country")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class Country {
     @Column(name = "name", length = 45, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private Collection<Manufacturer> manufacturers;
 
     public Country(Integer id, String name) {

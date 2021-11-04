@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 
+@Entity
 @Table(name = "manufacturer")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class Manufacturer {
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
     private Country country;
 
-    @OneToMany(mappedBy = "drug", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
     private Collection<Drug> drugs;
 
     public Manufacturer(Integer id, String name, Country country) {

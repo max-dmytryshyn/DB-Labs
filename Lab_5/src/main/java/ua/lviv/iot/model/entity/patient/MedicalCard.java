@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 
+@Entity
 @Table(name = "medical_card")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,13 +26,12 @@ public class MedicalCard {
     private String surname;
 
     @Column(name = "birth_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp birthDate;
 
-    @OneToMany(mappedBy = "doctor_appointment", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "medicalCard", fetch = FetchType.LAZY)
     private Collection<DoctorAppointment> doctorAppointments;
 
-    @OneToMany(mappedBy = "tracker_data", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "medicalCard", fetch = FetchType.LAZY)
     private Collection<TrackerData> trackerDataCollection;
 
     public MedicalCard(Integer id, String name, String surname, Timestamp birthDate) {

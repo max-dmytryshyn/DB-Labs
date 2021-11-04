@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
 
+@Entity
 @Table(name = "hospital")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,10 +24,10 @@ public class Hospital {
     @Column(name = "address", length = 45, nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY)
     private Collection<Patient> patients;
 
-    @OneToMany(mappedBy = "doctor_personal_file", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY)
     private Collection<DoctorPersonalFile> doctorPersonalFiles;
 
     public Hospital(Integer id, String name, String address) {

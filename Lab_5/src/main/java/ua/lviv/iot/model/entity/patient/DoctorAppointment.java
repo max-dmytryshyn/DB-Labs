@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
 @Table(name = "doctor_appointment")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +19,6 @@ public class DoctorAppointment {
     private Integer id;
 
     @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp date;
 
     @Column(name = "recommendation")
