@@ -16,12 +16,12 @@ public class ConnectionManager {
     private static Connection connection = null;
 
     public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e) {
-                System.out.println("SQLException: " + e.getMessage());
-            }
+
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+
         }
         return connection;
     }
