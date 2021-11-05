@@ -43,7 +43,7 @@ public class DoctorPersonalFile {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Doctor personal file {"
                 + "id =" + id + ", "
                 + "name =" + name + ", "
                 + "surname = " + surname + ", "

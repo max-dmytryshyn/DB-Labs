@@ -43,7 +43,7 @@ public class TrackerData {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Tracker data {"
                 + "id =" + id + ", "
                 + "date =" + date + ", "
                 + "systolicBloodPressure =" + systolicBloodPressure + ", "

@@ -30,7 +30,7 @@ public class Drug {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Drug {"
                 + "id =" + id + ", "
                 + "name =" + name + ", "
                 + "price =" + price + ", "

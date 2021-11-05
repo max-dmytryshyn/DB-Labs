@@ -31,7 +31,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Patient {"
                 + "id =" + id + ", "
                 + "medicalCardId =" + medicalCard.getId() + ", "
                 + "hospitalId = " + hospital.getId() + ", "

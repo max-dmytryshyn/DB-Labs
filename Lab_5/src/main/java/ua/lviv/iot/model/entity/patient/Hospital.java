@@ -38,7 +38,7 @@ public class Hospital {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Hospital {"
                 + "id =" + id + ", "
                 + "name =" + name + ", "
                 + "address = " + address

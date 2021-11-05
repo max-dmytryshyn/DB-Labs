@@ -5,13 +5,12 @@ import org.hibernate.SessionFactory;
 import ua.lviv.iot.model.dao.AbstractDao;
 import ua.lviv.iot.util.HibernateUtil;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
-    private final Class<E> eClass;
     protected final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private final Class<E> eClass;
 
     public AbstractDaoImpl(Class<E> eClass) {
         this.eClass = eClass;
@@ -21,7 +20,7 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
     public List<E> getAll() {
         List<E> entityList = new LinkedList<>();
 
-        try (Session session = sessionFactory.getCurrentSession()){
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             entityList = session.createQuery("from " + eClass.getSimpleName()).getResultList();
             session.getTransaction().commit();
@@ -36,7 +35,7 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
     public E get(Integer id) {
         E entity = null;
 
-        try (Session session = sessionFactory.getCurrentSession()){
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             entity = session.get(eClass, id);
             session.getTransaction().commit();
@@ -49,7 +48,7 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
 
     @Override
     public void create(E entity) {
-        try (Session session = sessionFactory.getCurrentSession()){
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
@@ -60,13 +59,10 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
 
     @Override
     public void update(Integer id, E entity) {
-        try (Session session = sessionFactory.getCurrentSession()){
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             session.update(entity);
             session.getTransaction().commit();
-            if (session.isOpen()) {
-                session.close();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,16 +70,13 @@ public abstract class AbstractDaoImpl<E> implements AbstractDao<E> {
 
     @Override
     public void delete(Integer id) {
-        try (Session session = sessionFactory.getCurrentSession()){
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             E entity = session.get(eClass, id);
             if (entity != null) {
                 session.delete(entity);
             }
             session.getTransaction().commit();
-            if (session.isOpen()) {
-                session.close();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

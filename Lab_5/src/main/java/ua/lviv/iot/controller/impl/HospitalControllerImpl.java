@@ -4,7 +4,7 @@ import ua.lviv.iot.model.dao.impl.HospitalDaoImpl;
 import ua.lviv.iot.model.entity.patient.Hospital;
 
 public class HospitalControllerImpl extends AbstractControllerImpl<Hospital> {
-    public HospitalControllerImpl(){
+    public HospitalControllerImpl() {
         super(new HospitalDaoImpl());
     }
 }

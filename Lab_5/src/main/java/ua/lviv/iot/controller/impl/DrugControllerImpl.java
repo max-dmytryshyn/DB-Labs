@@ -4,7 +4,7 @@ import ua.lviv.iot.model.dao.impl.DrugDaoImpl;
 import ua.lviv.iot.model.entity.drug.Drug;
 
 public class DrugControllerImpl extends AbstractControllerImpl<Drug> {
-    public DrugControllerImpl(){
+    public DrugControllerImpl() {
         super(new DrugDaoImpl());
     }
 }

@@ -3,7 +3,7 @@ package ua.lviv.iot.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AbstractController <E> {
+public interface AbstractController<E> {
 
     List<E> getAll() throws SQLException;
 

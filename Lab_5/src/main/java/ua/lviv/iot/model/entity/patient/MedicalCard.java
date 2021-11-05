@@ -43,7 +43,7 @@ public class MedicalCard {
 
     @Override
     public String toString() {
-        return "City {"
+        return "Medical card {"
                 + "id =" + id + ", "
                 + "name =" + name + ", "
                 + "surname = " + surname + ", "
