@@ -1,9 +1,11 @@
 package ua.lviv.iot.mapper.patient;
 
+import org.springframework.stereotype.Component;
 import ua.lviv.iot.domain.patient.DoctorPersonalFile;
 import ua.lviv.iot.dto.patient.DoctorPersonalFileDto;
 import ua.lviv.iot.mapper.AbstractMapper;
 
+@Component
 public class DoctorPersonalFileMapper extends AbstractMapper<DoctorPersonalFile, DoctorPersonalFileDto> {
 
     @Override
