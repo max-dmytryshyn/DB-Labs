@@ -126,7 +126,7 @@ CREATE TABLE tracker_data(
 
 CREATE TABLE patient(
 	id INT AUTO_INCREMENT,
-    medical_card_id INT NOT NULL,
+    medical_card_id INT NOT NULL UNIQUE,
     hospital_id INT NOT NULL,
     doctor_personal_file_id INT NOT NULL,
     
