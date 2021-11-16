@@ -23,10 +23,12 @@ CREATE TABLE family_companion (
 
 CREATE TABLE gender (
 	gender CHAR(1),
+    gender_full VARCHAR(10),
+    
     CONSTRAINT pk_gender PRIMARY KEY (gender)
 );
 
-INSERT INTO gender(gender) VALUES ('F'), ('M');
+INSERT INTO gender(gender, gender_full) VALUES ('F', 'FEMALE'), ('M', "MALE");
 
 CREATE TABLE family_tree (
     id INT AUTO_INCREMENT,
@@ -47,9 +49,9 @@ CREATE TABLE family_tree (
 CREATE TABLE family_value (
 	id INT AUTO_INCREMENT,
     name VARCHAR(100),
-    estimated_cost DECIMAL(10,1) UNSIGNED,
-    max_cost DECIMAL(10,1) UNSIGNED,
-    min_cost DECIMAL(10,1) UNSIGNED,
+    estimated_cost DECIMAL(10,2) UNSIGNED,
+    max_cost DECIMAL(10,2) UNSIGNED,
+    min_cost DECIMAL(10,2) UNSIGNED,
     
     CONSTRAINT family_value_pk PRIMARY KEY (id)
 );
