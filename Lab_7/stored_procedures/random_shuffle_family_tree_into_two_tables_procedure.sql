@@ -111,7 +111,6 @@ BEGIN
     "SELECT * FROM `", @slice_table_2_name, "`",
     " UNION ",
     "SELECT null, null, null, null, null, 'TABLE 2', null, null, null, null, null", ";");
-    SELECT @select_query;
     PREPARE statement FROM @select_query;
 	EXECUTE statement;
 	DEALLOCATE PREPARE statement;
