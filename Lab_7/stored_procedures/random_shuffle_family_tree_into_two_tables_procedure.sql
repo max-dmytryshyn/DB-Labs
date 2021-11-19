@@ -43,6 +43,9 @@ BEGIN
 		
         "CONSTRAINT pk_family_tree PRIMARY KEY (id)",
 	");");
+	PREPARE statement FROM @create_slice_table_1_query;
+    EXECUTE statement;
+    DEALLOCATE PREPARE statement;
     SET @slice_table_2_name = CONCAT("slice_family_tree_table_", @cur_date, "-", @cur_time, "_2");
     SET @create_slice_table_2_query = CONCAT(
     "CREATE TABLE `", @slice_table_2_name, "` (",
@@ -60,9 +63,6 @@ BEGIN
 		
         "CONSTRAINT pk_family_tree PRIMARY KEY (id)",
 	");");
-    PREPARE statement FROM @create_slice_table_1_query;
-    EXECUTE statement;
-    DEALLOCATE PREPARE statement;
     PREPARE statement FROM @create_slice_table_2_query;
     EXECUTE statement;
     DEALLOCATE PREPARE statement;
