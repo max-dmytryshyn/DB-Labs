@@ -26,7 +26,7 @@ USE Dmytryshyn_7_58;
 -- UPDATE family_tree_has_family_value SET family_tree_id = 11 WHERE family_value_id =1;
 
 -- Update tuple in family_tree_has_family_value with wrong family_tree_id
--- UPDATE family_tree_has_family_value SET family_value_id = 11 WHERE family_tree_id =1;
+-- UPDATE family_tree_has_family_value SET family_value_id = 11 WHERE family_tree_id =5;
 
 -- Insert tuple into family_tree with wrong gender
 -- CALL insert_into_family_tree("Max", "Dmytryshyn", '2003-04-04', null, "c.Lviv", null, "5375414121372964", 7, 'H', 4);
