@@ -3,7 +3,7 @@ USE Dmytryshyn_7_58;
 -- CALL insert_into_family_companion("Max", "Dmytryshyn", '2003-04-04', null, "Lviv", null, null, 'H'); 
 
 -- Update family companion's gender
-UPDATE family_companion SET gender = 'H' WHERE id = 1;
+-- UPDATE family_companion SET gender = 'H' WHERE id = 1;
 
 -- Delete tuple in family companion connected with family tree
 -- DELETE FROM family_companion WHERE id = 1;
