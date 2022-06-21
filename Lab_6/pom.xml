@@ -195,7 +195,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.example.library.App</mainClass>
+                            <mainClass>ua.lviv.iot.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
