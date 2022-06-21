@@ -135,7 +135,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.example.library.App</mainClass>
+                            <mainClass>ua.lviv.iot.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
