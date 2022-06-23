@@ -1,0 +1,1 @@
+docker errors --follow backend --tail 100
