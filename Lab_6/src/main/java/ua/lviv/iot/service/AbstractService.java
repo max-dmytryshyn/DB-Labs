@@ -1,9 +1,11 @@
 package ua.lviv.iot.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
+@CrossOrigin(origins = "https://mxdmos.pp.ua")
 public abstract class AbstractService<E, I> {
     protected abstract JpaRepository<E, I> getRepository();
 
