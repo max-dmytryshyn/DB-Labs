@@ -29,3 +29,4 @@ hs_err_pid*
 **/target
 Lab_8/Lab_8.iml
 *.iml
+data/
